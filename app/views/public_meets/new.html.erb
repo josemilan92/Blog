@@ -1,0 +1,19 @@
+<h4>Solicitar Cita</h4>
+<%= form_tag create_meet_path do%>
+    <div class="field">
+      <%= label_tag 'Nombre' %>
+      <%= text_field_tag :name, nil , class:'form-control'%>
+    </div>
+
+    <div class="field">
+      <%= label_tag 'Fecha de cita' %>
+      <%= text_field_tag :meeting, nil , class:'form-control', placeholder:"dd/mm/aa" %>
+    </div>
+    <div class="field">
+      <%= label_tag 'Asunto' %>
+      <%= text_area_tag :subject, nil , class:'form-control'%>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Solicitar Cita" ,class:'btn btn-default'%>
+    </div>
+<% end %>

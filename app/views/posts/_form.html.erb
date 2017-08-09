@@ -1,0 +1,47 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Titulo" %>
+    <%= form.text_field :title, id: :post_title , class:'form-control'%>
+  </div>
+
+  <div class="field">
+    <%= form.label "Contenido" %>
+    <%= form.text_area :context, id: :post_context, class:'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Publicado" %>
+    <%= form.check_box :status, id: :post_status, class:'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Dirección" %>
+    <%= form.text_field :url, id: :post_url , class:'form-control'%>
+  </div>
+    <div class="field">
+      <%= form.label "Categoría" %>
+      <%= form.select :category_id,  list_categories.collect{|c| [c.name, c.id]}%>
+    </div>
+
+    <div class="field">
+      <%= form.label "Foto"%>
+      <%= form.file_field :photo, id: :photo %>
+    </div>
+      <%= form.hidden_field :user_id , value:current_user.id %>
+
+  <div class="actions">
+    <%= form.submit  class:'btn btn-default'%>
+  </div>
+<% end %>

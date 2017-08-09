@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+
+    <h2><strong><%= post.title %></strong><small>/<%= post.category.name%></small></h2>
+    <%= image_tag post.photo ,:width=>"100" ,:height=>"100", :alt=>"" ,:class=>"alignleft border" %>
+    <small><%= post.created_at.to_formatted_s(:long) %>por<strong><%= post.user.email%></strong></small>
+    <hr/>
+    <div class="ocultar">
+      <p><%= post.context %></p>
+    </div>
+    <%= link_to "Ver más", posts_show_path(post.url) ,class: 'btn btn-default'%>
+<% end %>

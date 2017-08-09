@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comentarios</h1>
+
+<table class="table table-default">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Contenido</th>
+      <th>Articulo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.name %></td>
+        <td><%= comment.content %></td>
+        <td><%= comment.post.title %></td>
+        <td><%= link_to 'Editar', edit_comment_path(comment) ,class:'btn btn-default'%></td>
+        <td><%= link_to 'Eliminar', comment, method: :delete, data: { confirm: 'Desea eliminarlo?' },class:'btn btn-default' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>

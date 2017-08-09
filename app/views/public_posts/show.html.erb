@@ -1,0 +1,28 @@
+<h2><strong><%= @post.title %></strong><small>/<%= @post.category.name%></small></h2>
+<%= image_tag @post.photo ,:width=>"150" ,:height=>"150", :alt=>"" ,:class=>"alignleft border" %>
+    <small><%= @post.created_at.to_formatted_s(:long) %> por <strong><%= @post.user.email%></strong></small>
+    <hr/>
+      <p><%= @post.context %></p>
+<h3>Comentario</h3>
+<% @comments.each do |c| %>
+<blockquote>
+  <p><%= c.content %></p>
+  <footer><%=  c.name%></footer>
+</blockquote>
+<% end %>
+<h4>Crear Comentario</h4>
+<%= form_tag create_comment_path do%>
+<div class="field">
+  <%= label_tag 'Nombre' %>
+  <%= text_field_tag :name, nil , class:'form-control'%>
+</div>
+
+<div class="field">
+  <%= label_tag 'Contenido' %>
+  <%= text_area_tag :content, nil , class:'form-control' %>
+</div>
+<%= hidden_field_tag :post_id, @post.id %>
+<div class="actions">
+  <%= submit_tag "Crear Comentario" ,class:'btn btn-default'%>
+</div>
+<% end %>
